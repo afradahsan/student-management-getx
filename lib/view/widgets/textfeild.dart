@@ -9,13 +9,14 @@ class AddTextFeild extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      style: TextStyle(color: Colors.black),
+      // style: TextStyle(color: Colors.black),
               controller: controller,
               decoration: InputDecoration(
                   hintText: hintText,
                   enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.amber)),
-                  hintStyle: TextStyle(color: Colors.white)),
+                  // hintStyle: TextStyle(color: Colors.white)
+                  ),
             );
   }
 }

@@ -41,8 +41,9 @@ class AddStudent extends StatelessWidget {
                         studentViewModel.addStudent(
                             StudentModel(name: nameController.text, className: classController.text, stream: streamController.text));
                         nameController.clear();
-                        // Get.showSnackbar()
                         Get.back();
+                        Get.snackbar('Success ✅', 'Student Added Successfully',
+                        snackPosition: SnackPosition.BOTTOM);
                       }
                     },
                     child: const Text('Add')),

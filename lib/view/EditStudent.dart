@@ -63,6 +63,7 @@ class EditStduent extends GetView<StudentViewModel> {
                                       student.className != null &&
                                       student.stream != null) {
                                     studentViewModel.updateStudent(student);
+                                    Get.back();
                                   }
                                 },
                                 icon: const Icon(Icons.save),

@@ -49,12 +49,15 @@ class _StudentHomePageState extends State<StudentHomePage> {
                 children: [
                   const Text('Student List!', style: TextStyle( fontSize: 18),),
                   Spacer(),
-                  IconButton(onPressed: (){
-                    isDarkMode ?
-                    Get.changeTheme(ThemeData.light()) : Get.changeTheme(ThemeData.dark());
+                  IconButton(
+                    onPressed: (){
                     setState(() {
                       isDarkMode = !isDarkMode;
                     });
+                    print('object');
+                    print(isDarkMode);
+                    isDarkMode ?
+                    Get.changeTheme(ThemeData.light()) : Get.changeTheme(ThemeData.dark());
                   }, icon: isDarkMode ? Icon(Icons.light_mode): Icon(Icons.dark_mode))
                 ],
               ),
@@ -104,7 +107,8 @@ class _StudentHomePageState extends State<StudentHomePage> {
                                             },
                                             value: 1,child: Text('Edit'),),
                                           PopupMenuItem(
-                                            onTap: () => studentViewModel.deleteStudent(studentViewModel.allStudent[index].id!),
+                                            onTap: () { studentViewModel.deleteStudent(studentViewModel.allStudent[index].id!);
+                                            Get.snackbar('Deleted 🗑', 'Student Deleted Successfully', snackPosition: SnackPosition.BOTTOM);},
                                             value: 2,child: Text('Delete'),)
                                         ];
                                       },)

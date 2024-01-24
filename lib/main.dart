@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: GoogleFonts.montserrat().fontFamily,
+        // primaryColorDark: Colors.black,
         // primaryColor: Colors.white,
         primarySwatch: Colors.blue,
         textTheme: const TextTheme(
