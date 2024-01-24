@@ -37,38 +37,42 @@ class EditStduent extends GetView<StudentViewModel> {
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
                   children: [
+                    Text(
+                      'Update Student',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
                     AddTextFeild(
                         controller: nameController, hintText: 'hintText'),
+                    SizedBox(
+                      height: 10,
+                    ),
                     AddTextFeild(
                         controller: ageController, hintText: 'hintText'),
-                    AddTextFeild(controller: batchController, hintText: 'asdf'),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    AddTextFeild(
+                        controller: batchController, hintText: 'Stream'),
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: TextButton.icon(
-                                style: const ButtonStyle(
-                                    foregroundColor:
-                                        MaterialStatePropertyAll(Colors.white),
-                                    backgroundColor:
-                                        MaterialStatePropertyAll(Colors.green),
-                                    fixedSize: MaterialStatePropertyAll(
-                                      Size(210, 50),
-                                    )),
-                                onPressed: () {
-                                  if (student.name != null &&
-                                      student.className != null &&
-                                      student.stream != null) {
-                                    studentViewModel.updateStudent(student);
-                                    Get.back();
-                                  }
-                                },
-                                icon: const Icon(Icons.save),
-                                label: const Text("Update")),
-                          ),
+                          ElevatedButton(
+                              onPressed: () {
+                                if (student.name != null &&
+                                    student.className != null &&
+                                    student.stream != null) {
+                                  studentViewModel.updateStudent(student);
+                                  Get.back();
+                                  Get.snackbar('Updated 🔁', 'Updated student data');
+                                }
+                              },
+                              child: Text('Update')),
                         ],
                       ),
                     )
