@@ -21,15 +21,15 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: GoogleFonts.montserrat().fontFamily,
-        primaryColor: Colors.white,
+        // primaryColor: Colors.white,
         primarySwatch: Colors.blue,
         textTheme: const TextTheme(
-          bodyLarge: TextStyle(color: Colors.white),
-          bodyMedium: TextStyle(color: Colors.white),
-          bodySmall: TextStyle(color: Colors.white)
+          // bodyLarge: TextStyle(color: Colors.white),
+          // bodyMedium: TextStyle(color: Colors.white),
+          // bodySmall: TextStyle(color: Colors.white)
         ),
         iconTheme: const IconThemeData(
-          color: Colors.white
+          // color: Colors.white
         )
       ),
       home: const StudentHomePage()

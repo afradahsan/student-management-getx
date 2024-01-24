@@ -18,6 +18,7 @@ class _StudentHomePageState extends State<StudentHomePage> {
   var nameController = TextEditingController();
   var editController = TextEditingController();
   final StudentViewModel studentViewModel = Get.put(StudentViewModel());
+  bool isDarkMode = true;
 
   @override
   void initState() {
@@ -37,13 +38,26 @@ class _StudentHomePageState extends State<StudentHomePage> {
       floatingActionButton: FloatingActionButton(onPressed: (){
         Get.to(() => AddStudent());
       }, child: const Icon(Icons.add),),
-      backgroundColor: Colors.black,
+      // backgroundColor: Colors.black,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: Column(
             children: [
-              const Text('Student List!', style: TextStyle( fontSize: 18),),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('Student List!', style: TextStyle( fontSize: 18),),
+                  Spacer(),
+                  IconButton(onPressed: (){
+                    isDarkMode ?
+                    Get.changeTheme(ThemeData.light()) : Get.changeTheme(ThemeData.dark());
+                    setState(() {
+                      isDarkMode = !isDarkMode;
+                    });
+                  }, icon: isDarkMode ? Icon(Icons.light_mode): Icon(Icons.dark_mode))
+                ],
+              ),
               sizedtwenty(context),
               Obx(() => studentViewModel.allStudent.isEmpty
                     ? const Center(

@@ -19,7 +19,7 @@ class StudentViewModel extends GetxController{
   }
 
   updateStudent(StudentModel studentModel) async{
-    await studentRepo.update(studentModel);
+    await studentRepo.updateStudent(studentModel);
     print('updated');
     fetchAllStudent();
   }

@@ -16,7 +16,6 @@ class AddStudent extends StatelessWidget {
     final StudentViewModel studentViewModel = Get.put(StudentViewModel());
 
     return Scaffold(
-      backgroundColor: Colors.black,
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -42,6 +41,7 @@ class AddStudent extends StatelessWidget {
                         studentViewModel.addStudent(
                             StudentModel(name: nameController.text, className: classController.text, stream: streamController.text));
                         nameController.clear();
+                        // Get.showSnackbar()
                         Get.back();
                       }
                     },

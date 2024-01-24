@@ -28,26 +28,27 @@ class StudentRepo {
     return await dbClient.insert(DBHelper.tableName, studentModel.toMap());
   }
 
-  Future<int> update(StudentModel studentModel) async {
+Future<int> updateStudent(StudentModel studentModel) async {
   try {
-    print('Before update - Student Name: ${studentModel.name}');
-    var dbClient = await dbHelper.db;
-    
-    int result = await dbClient.rawUpdate(
-      'UPDATE ${DBHelper.tableName} SET name = ?, className = ?, stream = ? WHERE id = ?',
-      [studentModel.name, studentModel.className, studentModel.stream, studentModel.id],
+    final db = await dbHelper.db;
+
+    int result = await db.update(
+      DBHelper.tableName,
+      {
+        'name': studentModel.name,
+        'className': studentModel.className,
+        'stream': studentModel.stream,
+      },
+      where: 'id = ?',
+      whereArgs: [studentModel.id],
     );
 
-    print('After update - Student Name: ${studentModel.name}');
-    print('Update completed: $result');
-
-    // Update the StudentModel object after the database update
-    StudentModel updatedStudent = await getStudentById(studentModel.id!);
-    studentModel.name = updatedStudent.name;
-    studentModel.className = updatedStudent.className;
-    studentModel.stream = updatedStudent.stream;
-
-    print('Updated Student Model - Name: ${studentModel.name}, ClassName: ${studentModel.className}, Stream: ${studentModel.stream}');
+    if (result > 0) {
+      print('Update completed: $result');
+      print('Updated Student Name: ${studentModel.name}');
+    } else {
+      print('No records were updated.');
+    }
 
     return result;
   } catch (e) {
@@ -55,30 +56,6 @@ class StudentRepo {
     return 0; // or throw an exception
   }
 }
-
-  Future<StudentModel> getStudentById(int id) async {
-    var dbClient = await dbHelper.db;
-    try {
-      List<Map> maps = await dbClient.query(
-        DBHelper.tableName,
-        columns: ['id', 'name', 'className', 'stream'],
-        where: 'id = ?',
-        whereArgs: [id],
-      );
-
-      if (maps.isNotEmpty) {
-        // Assuming there's only one record with the given ID
-        return StudentModel.fromMap(maps.first);
-      } else {
-        // Handle the case where no record with the given ID is found
-        throw Exception('Student not found with ID: $id');
-      }
-    } catch (e) {
-      print('Error in getStudentById: $e');
-      // Handle the error appropriately (throw an exception or return a default StudentModel, depending on your use case)
-      throw Exception('Error fetching student by ID');
-    }
-  }
 
   Future<int> delete(int id) async {
     var dbClient = await dbHelper.db;
